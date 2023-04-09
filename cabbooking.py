@@ -7,6 +7,7 @@ from tkinter import messagebox as ms
 import sqlite3
 
 
+
 Item4 = 0
 
 
@@ -280,7 +281,7 @@ class travel:
             if var1.get() == 1:
                 self.txtTaxiTax.configure(state = NORMAL)
                 Item1=float(50)
-                TaxiTax.set("Rs " + str(Item1))
+                TaxiTax.set("$ " + str(Item1))
             elif var1.get() == 0:
                 self.txtTaxiTax.configure(state=DISABLED)
                 TaxiTax.set("0")
@@ -312,7 +313,7 @@ class travel:
             if var3.get() == 1:
                 self.txtTravel_Ins.configure(state = NORMAL)
                 Item3=float(10)
-                Travel_Ins.set("Rs " + str(Item3))
+                Travel_Ins.set("$ " + str(Item3))
             elif var3.get() == 0:
                 self.txtTravel_Ins.configure(state = DISABLED)
                 Travel_Ins.set("0")
@@ -324,7 +325,7 @@ class travel:
             if (var4.get()==1):
                 self.txtLuggage.configure(state = NORMAL)
                 Item4=float(30)
-                Luggage.set("Rs "+ str(Item4))
+                Luggage.set("$ "+ str(Item4))
             elif var4.get()== 0:
                 self.txtLuggage.configure(state = DISABLED)
                 Luggage.set("0")
@@ -340,7 +341,7 @@ class travel:
                 PremiumSedan.set("0")
                 self.txtStandard.configure(state = NORMAL)
                 Item5 = float(8)
-                Standard.set("Rs "+ str(Item5))
+                Standard.set("$ "+ str(Item5))
             elif carType.get() == 2:
                 self.txtStandard.configure(state =DISABLED)
                 Standard.set("0")
@@ -348,7 +349,7 @@ class travel:
                 PremiumSedan.set("0")
                 self.txtPrimeSedan.configure(state = NORMAL)
                 Item5 = float(10)
-                PrimeSedan.set("Rs "+ str(Item5))
+                PrimeSedan.set("$ "+ str(Item5))
             else:
                 self.txtStandard.configure(state =DISABLED)
                 Standard.set("0")
@@ -356,7 +357,7 @@ class travel:
                 PrimeSedan.set("0")
                 self.txtPremiumSedan.configure(state = NORMAL)
                 Item5 = float(15)
-                PremiumSedan.set("Rs "+ str(Item5))
+                PremiumSedan.set("$ "+ str(Item5))
                 
                        
         def Total_Paid():
@@ -365,23 +366,23 @@ class travel:
                     Item2=Km.get()
                     Cost_of_fare = (Item1+(float(Item2)*Item5)+Item3+Item4)
 
-                    Tax = "Rs " + str('%.2f'%((Cost_of_fare) *0.09))
-                    ST = "Rs " + str('%.2f'%((Cost_of_fare)))
-                    TT = "Rs " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
+                    Tax = "$ " + str('%.2f'%((Cost_of_fare) *0.09))
+                    ST = "$ " + str('%.2f'%((Cost_of_fare)))
+                    TT = "$ " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
                 elif journeyType.get()==2:
                     Item2=Km.get()
                     Cost_of_fare = (Item1+(float(Item2)*Item5)*1.5+Item3+Item4)
 
-                    Tax = "Rs " + str('%.2f'%((Cost_of_fare) *0.09))
-                    ST = "Rs " + str('%.2f'%((Cost_of_fare)))
-                    TT = "Rs " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
+                    Tax = "$ " + str('%.2f'%((Cost_of_fare) *0.09))
+                    ST = "$ " + str('%.2f'%((Cost_of_fare)))
+                    TT = "$ " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
                 else:
                     Item2=Km.get()
                     Cost_of_fare = (Item1+(float(Item2)*Item5)*2+Item3+Item4)
 
-                    Tax = "Rs " + str('%.2f'%((Cost_of_fare) *0.09))
-                    ST = "Rs " + str('%.2f'%((Cost_of_fare)))
-                    TT = "Rs " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
+                    Tax = "$ " + str('%.2f'%((Cost_of_fare) *0.09))
+                    ST = "$ " + str('%.2f'%((Cost_of_fare)))
+                    TT = "$ " + str('%.2f'%(Cost_of_fare+((Cost_of_fare)*0.9)))
 
                 PaidTax.set(Tax)
                 SubTotal.set(ST)
