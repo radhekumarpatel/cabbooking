@@ -294,17 +294,17 @@ class travel:
                 Km.set("0")
             elif var2.get() == 1 and varl1.get() != "" and varl2.get() != "":
                 self.txtKm.configure(state=NORMAL)
-                if varl1.get() == "CampusCafe":
-                    switch ={"BoysHostel": 10,"GirlsHostel": 8,"AdmissionBlock":6,"CampusCafe": 0}
+                if varl1.get() == "Kitchner":
+                    switch ={"Lester B. Pearson Airport": 10,"Cambridge": 8,"Waterloo":6,"Kitchner": 0}
                     Km.set(switch[varl2.get()])
-                elif varl1.get() == "BoysHostel":
-                    switch ={"BoysHostel": 0,"GirlsHostel": 2,"AdmissionBlock":5,"CampusCafe": 10}
+                elif varl1.get() == "Lester B. Pearson Airport":
+                    switch ={"Lester B. Pearson Airport": 0,"Cambridge": 2,"Waterloo":5,"Kitchner": 10}
                     Km.set(switch[varl2.get()])
-                elif varl1.get() == "GirlsHostel":
-                    switch ={"BoysHostel": 2,"GirlsHostel": 0,"AdmissionBlock":3,"CampusCafe": 8}
+                elif varl1.get() == "Cambridge":
+                    switch ={"Lester B. Pearson Airport": 2,"Cambridge": 0,"Waterloo":3,"Kitchner": 8}
                     Km.set(switch[varl2.get()])
-                elif varl1.get() == "AdmissionBlock":
-                    switch ={"BoysHostel": 5,"GirlsHostel": 3,"AdmissionBlock":0,"CampusCafe": 6}
+                elif varl1.get() == "Waterloo":
+                    switch ={"Lester B. Pearson Airport": 5,"Cambridge": 3,"Waterloo":0,"Kitchner": 6}
                     Km.set(switch[varl2.get()])        
 
         
@@ -479,7 +479,7 @@ class travel:
         self.lblPickup.grid(row=0,column=0,sticky=W)
 
         self.cboPickup =ttk.Combobox(TravelFrame, textvariable = varl1 , state='readonly', font=('arial',20,'bold'), width=14)
-        self.cboPickup['value']=('','CampusCafe','AdmissionBlock','GirlsHostel','BoysHostel')
+        self.cboPickup['value']=('','Kitchner','Waterloo','Cambridge','Lester B. Pearson Airport')
         self.cboPickup.current(0)
         self.cboPickup.grid(row=0,column=1)
 
@@ -488,7 +488,7 @@ class travel:
         self.lblDrop.grid(row=1,column=0,sticky=W)
 
         self.cboDrop =ttk.Combobox(TravelFrame, textvariable = varl2 , state='readonly', font=('arial',20,'bold'), width=14)
-        self.cboDrop['value']=('','BoysHostel','GirlsHostel','CampusCafe','AdmissionBlock')
+        self.cboDrop['value']=('','Lester B. Pearson Airport','Cambridge','Kitchner','Waterloo')
         self.cboDrop.current(0)
         self.cboDrop.grid(row=1,column=1)
 
