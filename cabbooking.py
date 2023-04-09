@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import ttk
 import random
 import time
-import datetime
 from tkinter import messagebox as ms
 import sqlite3
+from tkinter import filedialog
 
 
 
@@ -167,7 +167,7 @@ class travel:
         
 
     
-    #==========================================Define Functiom==================================================
+    #Define Functiom
 
         def iExit():
             iExit= ms.askyesno("Prompt!","Do you want to exit?")
@@ -175,6 +175,55 @@ class travel:
                 root.destroy()
                 return
 
+        def print(randomRef):
+            filename = filedialog.asksaveasfilename(defaultextension='.txt',initialfile='Booking_Confirmation')
+            if filename:
+                with open(filename, "w") as file:
+                    Receipt_Ref.set(randomRef)
+                    file.write("Receipt Ref:")
+                    file.write(Receipt_Ref.get() + "\n")
+                    file.write('Date:')
+                    file.write(DateofOrder.get() + "\n")
+                    file.write('Taxi No:')
+                    file.write('TR ' + Receipt_Ref.get() + " BW\n")
+                    file.write('Firstname:')
+                    file.write(Firstname.get() + "\n")
+                    file.write('Surname:')
+                    file.write(Surname.get() + "\n")
+                    file.write('Address:')
+                    file.write(Address.get() + "\n")
+                    file.write('Postal Code:')
+                    file.write(Postcode.get() + "\n")
+                    file.write('Telephone:')
+                    file.write(Telephone.get() + "\n")
+                    file.write('Mobile:')
+                    file.write(Mobile.get() + "\n")
+                    file.write('Email:')
+                    file.write(Email.get() + "\n")
+                    file.write('From:')
+                    file.write(varl1.get() + "\n")
+                    file.write('To:')
+                    file.write(varl2.get() + "\n")
+                    file.write('Pooling:')
+                    file.write(varl3.get() + "\n")
+                    file.write('Standard:')
+                    file.write(Standard.get() + "\n")
+                    file.write('Prime Sedan:')
+                    file.write(PrimeSedan.get() + "\n")
+                    file.write('Premium Sedan:')
+                    file.write(PremiumSedan.get() + "\n")
+                    file.write('Paid:')
+                    file.write(PaidTax.get() + "\n")
+                    file.write('SubTotal:')
+                    file.write(str(SubTotal.get()) + "\n")
+                    file.write('Total Cost:')
+                    file.write(str(TotalCost.get()))
+            ms.showinfo("Success", "Receipt saved to file: " + filename)
+
+
+   
+   
+        
         def Reset():
             TaxiTax.set("0")
             Km.set("0")
@@ -269,6 +318,9 @@ class travel:
                 self.txtReceipt2.insert(END, str(SubTotal.get()) + "\n")
                 self.txtReceipt1.insert(END,'Total Cost:\n')
                 self.txtReceipt2.insert(END, str(TotalCost.get()))
+                iPrint= ms.askyesno("Prompt!","Do you want to Print the receipt to File?")
+                if iPrint > 0:
+                    print(randomRef)
                 
             else:
                 self.txtReceipt1.delete("1.0",END)
@@ -392,7 +444,7 @@ class travel:
 
             
 
-   #================================================mainframe========================================================================
+   #mainframe
 
         MainFrame=Frame(self.root)
         MainFrame.pack(fill=BOTH,expand=True)
@@ -403,7 +455,7 @@ class travel:
         self.lblTitle=Label(Tops,font=('arial',50,'bold'),text=" Taxi Booking System in Region of Waterloo ")
         self.lblTitle.grid()
 
-    #================================================customerframedetail=============================================================
+    #customerframedetail
         CustomerDetailsFrame=LabelFrame(MainFrame, width=1350,height=500,bd=20, pady=5, relief=RIDGE)
         CustomerDetailsFrame.pack(side=BOTTOM,fill=BOTH,expand=True)
 
@@ -423,7 +475,7 @@ class travel:
         CostFrame.grid(row=1,column=1)
 
 
-    #===============================================recipt======================================================================
+    #recipt
         Receipt_BottonFrame=LabelFrame(CustomerDetailsFrame,bd=10, width=450,height=400, relief=RIDGE)
         Receipt_BottonFrame.pack(side=RIGHT,fill=BOTH,expand=True)
 
@@ -432,7 +484,7 @@ class travel:
 
         ButtonFrame=LabelFrame(Receipt_BottonFrame, width=350,height=100, relief=RIDGE)
         ButtonFrame.grid(row=1,column=0)
-    #=========================================================CustomerName====================================================
+    #CustomerName
 
         self.lblFirstname=Label(CustomerName,font=('arial',14,'bold'),text="Firstname",bd=7)
         self.lblFirstname.grid(row=0,column=0,sticky=W)
@@ -474,7 +526,7 @@ class travel:
         self.txtEmail.grid(row=6,column=1)
 
  
-    #===============================================Taxi Information==============================================================
+    #Taxi Information
         self.lblPickup=Label(TravelFrame,font=('arial',14,'bold'),text="Pickup",bd=7)
         self.lblPickup.grid(row=0,column=0,sticky=W)
 
@@ -500,7 +552,7 @@ class travel:
         self.cboPooling.current(1)
         self.cboPooling.grid(row=2,column=1)
 
-    #===============================================Taxi Information==============================================================
+    #Taxi Information
 
         self.chkTaxiTax=Checkbutton(TravelFrame,text="Taxi Tax(Base Charge) *",variable = var1, onvalue=1, offvalue=0,font=('arial',16,'bold'),command=Taxi_Tax).grid(row=3, column=0, sticky=W)
         self.txtTaxiTax=Label(TravelFrame,font=('arial',14,'bold'),textvariable=TaxiTax,bd=6,width=18,bg="white",state= DISABLED,justify=RIGHT,relief=SUNKEN)
@@ -520,7 +572,7 @@ class travel:
         self.txtLuggage=Label(TravelFrame,font=('arial',14,'bold'),textvariable=Luggage,bd=6,width=18,bg="white",state= DISABLED,justify=RIGHT,relief=SUNKEN)
         self.txtLuggage.grid(row=6,column=1)
     
-    #=================================payment information ===========================================================================
+    #payment information
          
         self.lblPaidTax=Label(CostFrame,font=('arial',14,'bold'),text="Paid Tax\t\t",bd=7)
         self.lblPaidTax.grid(row=0,column=2,sticky=W)
@@ -541,7 +593,7 @@ class travel:
         self.txtTotalCost = Label(CostFrame,font=('arial',14,'bold'),textvariable=TotalCost,bd=7, width=26, justify=RIGHT,bg="white",relief=SUNKEN)
         self.txtTotalCost.grid(row=2,column=3)
 
-    #==========================================================taxiselect=======================================================================
+    #taxiselect
 
         self.chkStandard=Radiobutton(Book_Frame,text="Standard",value=1,variable = carType,font=('arial',14,'bold'),command=selectCar).grid(row=0, column=0, sticky=W)
         self.txtStandard = Label(Book_Frame,font=('arial',14,'bold'),width =7,textvariable=Standard,bd=5, state= DISABLED, justify=RIGHT,bg="white",relief=SUNKEN)
@@ -562,28 +614,24 @@ class travel:
         self.chkSpecialsNeeds =Radiobutton(Book_Frame,text="SpecialNeeds",value=3,variable = journeyType,font=('arial',14,'bold')).grid(row=2, column=2, sticky=W)
     
     
-    #=======================================Recipt====================================================================================
+    #Recipt
 
         self.txtReceipt1 = Text(ReceiptFrame,width = 22, height = 21,font=('arial',10,'bold'),borderwidth=0)
         self.txtReceipt1.grid(row=0,column=0,columnspan=2)
         self.txtReceipt2 = Text(ReceiptFrame,width = 22, height = 21,font=('arial',10,'bold'),borderwidth=0)
         self.txtReceipt2.grid(row=0,column=2,columnspan=2)
 
-
-    #======================================Button========================================================================================
         
         self.btnTotal = Button(ButtonFrame,padx=18,bd=7,font=('arial',11,'bold'),width = 2,text='Total',command=Total_Paid).grid(row=0,column=0)
         self.btnReceipt = Button(ButtonFrame,padx=18,bd=7,font=('arial',11,'bold'),width = 2,text='Receipt',command=Receiptt).grid(row=0,column=1)
         self.btnReset = Button(ButtonFrame,padx=18,bd=7,font=('arial',11,'bold'),width = 2,text='Reset',command=Reset).grid(row=0,column=2)
         self.btnExit = Button(ButtonFrame,padx=18,bd=7,font=('arial',11,'bold'),width = 2,text='Exit', command=iExit).grid(row=0,column=3)
         
-    #====================================================================================================================================
-
         
 if __name__=='__main__':
     root = Tk()
 
-    #=========================================== Getting Screen Width ==================================================================
+    #Getting Screen Width 
     w = root.winfo_screenwidth()
     h = root.winfo_screenheight()
     geometry="%dx%d+%d+%d"%(w,h,0,0)
