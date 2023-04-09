@@ -204,7 +204,7 @@ class travel:
                     file.write(varl1.get() + "\n")
                     file.write('To:')
                     file.write(varl2.get() + "\n")
-                    file.write('Pooling:')
+                    file.write('Number of persons:')
                     file.write(varl3.get() + "\n")
                     file.write('Standard:')
                     file.write(Standard.get() + "\n")
