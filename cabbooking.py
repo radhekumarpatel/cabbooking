@@ -109,7 +109,7 @@ class travel:
 
     def __init__(self,root):
         self.root = root
-        self.root.title("Taxi Booking System In LPU")
+        self.root.title("Taxi Booking System in Region of Waterloo")
         self.root.geometry(geometry) 
         self.root.configure(background='black')
 
@@ -224,7 +224,7 @@ class travel:
             self.reset_counter=1
 
         def Receiptt():
-            if reset_counter is 0 and Firstname.get()!="" and Surname.get()!="" and Address.get()!="" and Postcode.get()!="" and Mobile.get()!="" and Telephone.get()!="" and Email.get()!="":
+            if reset_counter == 0 and Firstname.get()!="" and Surname.get()!="" and Address.get()!="" and Postcode.get()!="" and Mobile.get()!="" and Telephone.get()!="" and Email.get()!="":
                 self.txtReceipt1.delete("1.0",END)
                 self.txtReceipt2.delete("1.0",END)
                 x=random.randint(10853,500831)
@@ -400,7 +400,7 @@ class travel:
         Tops = Frame(MainFrame, bd=20, width=1350,relief=RIDGE)
         Tops.pack(side=TOP,fill=BOTH,expand=True)
 
-        self.lblTitle=Label(Tops,font=('arial',70,'bold'),text=" Taxi Booking System in LPU ")
+        self.lblTitle=Label(Tops,font=('arial',50,'bold'),text=" Taxi Booking System in Region of Waterloo ")
         self.lblTitle.grid()
 
     #================================================customerframedetail=============================================================
@@ -492,7 +492,7 @@ class travel:
         self.cboDrop.current(0)
         self.cboDrop.grid(row=1,column=1)
 
-        self.lblPooling=Label(TravelFrame,font=('arial',14,'bold'),text="Pooling",bd=7)
+        self.lblPooling=Label(TravelFrame,font=('arial',14,'bold'),text="Number of Persons",bd=7)
         self.lblPooling.grid(row=2,column=0,sticky=W)
 
         self.cboPooling =ttk.Combobox(TravelFrame, textvariable = varl3 , state='readonly', font=('arial',20,'bold'), width=14)
