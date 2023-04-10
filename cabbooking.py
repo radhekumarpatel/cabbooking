@@ -63,25 +63,34 @@ class user:
         except Exception as e:
             print(f"An error occurred: {e}")
             
-    def new_user(self):
-    	#Establish Connection
-        with sqlite3.connect('Users.db') as db:
-            c = db.cursor()
+    
 
-        #Find Existing username if any take proper action
-        find_user = ('SELECT * FROM user WHERE username = ?')
-        c.execute(find_user,[(self.username.get())])        
-        if c.fetchall():
-            ms.showerror('Error!','Username Already Taken!')
-        else:
-            ms.showinfo('Success!','Account Created!')
-            self.log()
-        #Create New Account 
-        insert = 'INSERT INTO user(username,password) VALUES(?,?)'
-        c.execute(insert,[(self.n_username.get()),(self.n_password.get())])
-        db.commit()
+    def new_user(self):
+        try:
+            # Establish Connection
+            with sqlite3.connect('Users.db') as db:
+                c = db.cursor()
+
+            # Find Existing username if any take proper action
+            find_user = ('SELECT * FROM user WHERE username = ?')
+            c.execute(find_user,[(self.username.get())])        
+            if c.fetchall():
+                ms.showerror('Error!','Username Already Taken!')
+            else:
+                ms.showinfo('Success!','Account Created!')
+                self.log()
+
+            # Create New Account 
+            insert = 'INSERT INTO user(username,password) VALUES(?,?)'
+            c.execute(insert,[(self.n_username.get()),(self.n_password.get())])
+            db.commit()
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 
         #Frame Packing Methords
+    
     def log(self):
         self.username.set('')
         self.password.set('')
