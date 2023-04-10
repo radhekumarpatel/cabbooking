@@ -41,23 +41,27 @@ class user:
 
     #Login Function
     def login(self):
-    	#Establish Connection
-        with sqlite3.connect('Users.db') as db:
-            c = db.cursor()
+        try:
+        # Establish Connection
+            with sqlite3.connect('Users.db') as db:
+                c = db.cursor()
 
-        #Find user If there is any take proper action
-        find_user = ('SELECT * FROM user WHERE username = ? and password = ?')
-        c.execute(find_user,[(self.username.get()),(self.password.get())])
-        result = c.fetchall()
-        if result:
-            self.logf.pack_forget()
-            self.head['text'] = "Welcome, " + self.username.get()
-            self.head.configure(fg="green")
-            self.head.pack(fill=X)
-            application = travel(root)
-            
-        else:
-            ms.showerror('Oops!','Username Not Found.')
+            # Find user If there is any take proper action
+            find_user = ('SELECT * FROM user WHERE username = ? and password = ?')
+            c.execute(find_user,[(self.username.get()),(self.password.get())])
+            result = c.fetchall()
+            if result:
+                self.logf.pack_forget()
+                self.head['text'] = "Welcome, " + self.username.get()
+                self.head.configure(fg="green")
+                self.head.pack(fill=X)
+                application = travel(root)
+
+            else:
+                ms.showerror('Oops!','Username Not Found.')
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
             
     def new_user(self):
     	#Establish Connection
